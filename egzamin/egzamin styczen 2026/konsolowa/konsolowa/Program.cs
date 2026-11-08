@@ -1,88 +1,99 @@
-﻿internal class Program
+﻿using System.ComponentModel.Design;
+using System.Runtime.InteropServices;
+using static Program;
+using static System.Net.Mime.MediaTypeNames;
+
+internal class Program
 {
-    static Random random = new Random();
-    public static string haslo = "";
 
-/*
-nazwa:               StworzHaslo
-opis funkcji:        Funkcja generuje losowe haslo 12 znakowe w ktorym znajduja sie 3 losowe male litery, 3 losowe duze litery, 2 losowe cyfry,
-                     2 losowe polskie znaki, 2 losowe znaki specjalne z podanego zestawu, nastepnie zwraca wygenerowane haslo
-paramatry:           brak
-zwracany typ i opis: losowo wygenerowane haslo jako zmienna tekstowa
-autor:               1111111111 
-*/
-    public static string StworzHaslo()
+    public class Kosc
     {
-        haslo = "";
+        static Random rnd = new Random();
+        public static int LiczbaInstancji;
+        private string[] nazwyPlikow = { "kosc0.png", "kosc1.png", "kosc2.png", "kosc3.png", "kosc4.png", "kosc5.png", "kosc6.png" };
+        private int wartosc;
+        private string? idPlikuGraficznego;
+        private bool czyDostepna;
 
-        char[] znakiM = { 'a', 'b', 'c', 'd', 'e' };
-        char[] znakiW = { 'A', 'B', 'C','D','E',};
-        char[] znakiNosowe = { 'Ą','Ć','ą','ć','ę'};
-        char[] liczby = { '0', '1','2','3'};
-        char[] znakiSpecjalne = { '!', '@', '#','$'};
+        public int Wartosc { get; private set; }
+        public string IdPlikuGraficznego { get; private set; }
 
-        int maleIlosc = 3;
-        int wielkieIlosc = 3;
-        int nosoweIlosc = 2;
-        int liczbyIlosc = 2;
-        int specjalneIlosc = 2;
-        
-        for (int i = 0; i < 11;) 
-        { 
-          int losowyZestawZnakow = random.Next(1, 6);
-            //Console.WriteLine(i);
-            if (losowyZestawZnakow == 1 && maleIlosc > 0)
+        public Kosc(int LiczbaOczek)
+        {
+            if (LiczbaOczek != 1 && LiczbaOczek != 2 && LiczbaOczek != 3 && LiczbaOczek != 4 && LiczbaOczek != 5 && LiczbaOczek != 6)
             {
-                int losowyZnak = random.Next(0, znakiM.Length);
-                haslo += znakiM[losowyZnak];
-                maleIlosc--;
-                i++;
-                //Console.WriteLine("Debug male");
-                //Console.WriteLine($"Debug wynik {wynik}");
-                //Console.WriteLine($"Debug i {i}");
+                LiczbaOczek = 0;
             }
-            else if (losowyZestawZnakow == 2 && wielkieIlosc > 0)
+
+            Wartosc = LiczbaOczek;
+            IdPlikuGraficznego = nazwyPlikow[LiczbaOczek];
+            czyDostepna = true;
+            LiczbaInstancji++;
+        }
+
+        public Kosc()
+        {
+            int LiczbaOczek = rnd.Next(1, 7);
+            Wartosc = LiczbaOczek;
+            IdPlikuGraficznego = nazwyPlikow[LiczbaOczek];
+            czyDostepna = true;
+            LiczbaInstancji++;
+        }
+
+        public void rzut()
+        {
+            if (czyDostepna)
             {
-                int losowyZnak = random.Next(0, znakiW.Length);
-                haslo += znakiW[losowyZnak];
-                wielkieIlosc--;
-                i++;
-                //Console.WriteLine("Debug duze");
-            }
-            else if (losowyZestawZnakow == 3 && nosoweIlosc > 0)
-            {
-                int losowyZnak = random.Next(0, znakiNosowe.Length);
-                haslo += znakiNosowe[losowyZnak];
-                nosoweIlosc--;
-                i++;
-                //Console.WriteLine("Debug nosowe");
-            }
-            else if (losowyZestawZnakow == 4 && specjalneIlosc > 0)
-            {
-                int losowyZnak = random.Next(0, znakiSpecjalne.Length);
-                haslo += znakiSpecjalne[losowyZnak];
-                specjalneIlosc--;
-                i++;
-                //Console.WriteLine("Debug specjalne");
-            }
-            else if (losowyZestawZnakow == 5 && liczbyIlosc > 0)
-            {
-                int losowyZnak = random.Next(0, liczby.Length);
-                haslo += liczby[losowyZnak];
-                liczbyIlosc--;
-                i++;
-                //Console.WriteLine("Debug liczby");
+                int LiczbaOczek = rnd.Next(1, 7);
+                Wartosc = LiczbaOczek;
+                IdPlikuGraficznego = nazwyPlikow[LiczbaOczek];
             }
         }
-        //Console.WriteLine($"Debug ostateczny {wynik}");
-        return haslo;
-    }
-    private static void Main(string[] args)
-    {
-        for (int i = 0; i < 5; i++)
+
+        public void zablokuj()
         {
-            StworzHaslo();
-            Console.WriteLine($"Haslo {i+1} - {haslo}");
+            czyDostepna = false;
+        }
+
+        public string zwrocTekst()
+        {
+            return Wartosc switch
+            {
+                1 => "jeden",
+                2 => "dwa",
+                3 => "trzy",
+                4 => "cztery",
+                5 => "piec",
+                6 => "szesc",
+                _ => "bledna wartosc"
+            };
+        }
+        private static void Main(string[] args)
+        {
+            //while (true) { //for debuging only
+            Console.WriteLine("podaj wartosc pierwszej kosci");
+            string? input = Console.ReadLine();
+
+            Kosc pierwszaKosc;
+
+            if (int.TryParse(input, out int liczba))
+            {
+                pierwszaKosc = new Kosc(liczba);
+            }
+            else
+            {
+                pierwszaKosc = new Kosc(0);
+            }
+            Console.WriteLine($"Liczba instancji klasy kosc - {Kosc.LiczbaInstancji}");
+            Console.WriteLine($"Liczba oczek na pierwszej kosci - {pierwszaKosc.Wartosc}, slownie - {pierwszaKosc.zwrocTekst()}");
+            Console.WriteLine($"Nazwa pliku odpowiadajaca wartosci - {pierwszaKosc.IdPlikuGraficznego}");
+
+            Kosc drugaKosc = new Kosc();
+            Console.WriteLine($"Liczba instancji klasy kosc - {Kosc.LiczbaInstancji}");
+            Console.WriteLine($"Liczba oczek na drugiej kosci - {drugaKosc.Wartosc}, slownie - {drugaKosc.zwrocTekst()}");
+            Console.WriteLine($"Nazwa pliku odpowiadajaca wartosci - {drugaKosc.IdPlikuGraficznego}");
+            //}
+
         }
     }
 }
