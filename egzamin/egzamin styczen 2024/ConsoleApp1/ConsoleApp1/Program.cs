@@ -12,7 +12,7 @@
              opis funkcji:          funkcja sprawdza jaka jest plec na podstawie peselu
              parametry:             string pesel-nr pesel w postaci łancucha znakow
              zwracany typ i opis:   char K-po peslu okresla plec na kobiete, char M-po peslu okresla plen na mezczyzne
-             autor:                 2 pedalow i cwel
+             autor:nic podejrzanego tutaj nie bylo prosze nie sprawdzac historii
              
              */
             public static char Jakaplec(string pesel) {
