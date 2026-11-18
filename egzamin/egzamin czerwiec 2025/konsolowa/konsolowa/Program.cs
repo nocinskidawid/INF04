@@ -11,17 +11,30 @@
 
         internal int[][] losuj(int input)
         {
-            Random r = new Random();    
+            Random r = new Random();
             int[][] losy = new int[input][];
             for (int i = 0; i < input; i++)
             {
                 losy[i] = new int[6];
                 for (int j = 0; j < 6; j++)
                 {
-                    losy[i][j] = r.Next(1,49); //todo brak powtarzania
+                    int[] wylosowane = {0,0,0,0,0,0};
+                    int wylosowana = 0;
+                    int k = 0;
+                    while (wylosowane[5]==0)
+                    {
+                        wylosowana = r.Next(1, 10);
+                        if (wylosowane.Contains(wylosowana))
+                        {
+                            Console.WriteLine(wylosowana);
+                            wylosowane[k] = wylosowana;
+                            k++;
+                        }
+                    }
+
                 }
             }
-            return losy; 
+            return losy;
         }
 
         public void wyswietlWyniki(int[][] losy, int input)
@@ -42,7 +55,7 @@
         {
             Console.WriteLine("Ile wygenerowac losowan?");
             string input = Console.ReadLine();
-            if(int.TryParse(input, out int parsed))
+            if (int.TryParse(input, out int parsed))
             {
                 Losowanie l = new Losowanie(parsed);
             }
