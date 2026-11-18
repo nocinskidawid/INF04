@@ -4,14 +4,12 @@ plugins {
 
 android {
     namespace = "com.example.mobilna"
-    compileSdk {
-        version = release(37)
-    }
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.mobilna"
-        minSdk = 28
-        targetSdk = 37
+        minSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -20,10 +18,11 @@ android {
 
     buildTypes {
         release {
-            optimization {
-                enable = true
-                packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
-            }
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -33,11 +32,12 @@ android {
 }
 
 dependencies {
-    implementation(libs.activity.ktx)
+
     implementation(libs.appcompat)
-    implementation(libs.constraintlayout)
     implementation(libs.material)
+    implementation(libs.activity)
+    implementation(libs.constraintlayout)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }

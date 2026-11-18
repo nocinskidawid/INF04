@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void usun(View view) {
         if(licznikPolubien>0){
-        licznikPolubien--;
-        TextView licznik = findViewById(R.id.licznik);
-        licznik.setText(licznikPolubien+"Polubien");
+            licznikPolubien--;
+            TextView licznik = findViewById(R.id.licznik);
+            licznik.setText(licznikPolubien+"Polubien");
         }
     }
 }
