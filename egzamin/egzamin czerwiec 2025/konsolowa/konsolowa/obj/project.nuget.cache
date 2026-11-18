@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jsptDXeUzwI=",
+  "dgSpecHash": "AvH4feAo2SpEOSNLNlsaJo3z6y5H+BDMBoGitVyNzPYGTogsB1hgCNhgirTyC/7D1+upR1YSPrSVxMYTXLvHjQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Student\\Desktop\\egzamin czerwiec 2025\\konsolowa\\konsolowa\\konsolowa.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Student\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.34\\microsoft.windowsdesktop.app.ref.8.0.34.nupkg.sha512",
-    "C:\\Users\\Student\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.34\\microsoft.netcore.app.ref.8.0.34.nupkg.sha512",
-    "C:\\Users\\Student\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.34\\microsoft.aspnetcore.app.ref.8.0.34.nupkg.sha512",
-    "C:\\Users\\Student\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.34\\microsoft.netcore.app.host.win-x64.8.0.34.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Pc\\Desktop\\INF04\\egzamin\\egzamin czerwiec 2025\\konsolowa\\konsolowa\\konsolowa.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

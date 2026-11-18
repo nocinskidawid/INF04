@@ -16,17 +16,17 @@
             for (int i = 0; i < input; i++)
             {
                 losy[i] = new int[6];
+                int[] wylosowane = { 0, 0, 0, 0, 0, 0 };
                 for (int j = 0; j < 6; j++)
                 {
-                    int[] wylosowane = {0,0,0,0,0,0};
                     int wylosowana = 0;
                     int k = 0;
                     while (wylosowane[5]==0)
                     {
-                        wylosowana = r.Next(1, 10);
-                        if (wylosowane.Contains(wylosowana))
+                        wylosowana = r.Next(1, 49);
+                        if (!wylosowane.Contains(wylosowana))
                         {
-                            Console.WriteLine(wylosowana);
+                            losy[i][k] = wylosowana;
                             wylosowane[k] = wylosowana;
                             k++;
                         }
@@ -39,13 +39,30 @@
 
         public void wyswietlWyniki(int[][] losy, int input)
         {
+            //wyswietlanie zestawow liczb
             Console.WriteLine("Zestawy wylosowanych liczb:");
-            int j = 1;
+            int n = 1;
             foreach (int[] l in losy)
             {
-                Console.WriteLine($"Losowanie {j}: {string.Join(",", l)}");
-                j++;
-            } // todo zliczanie wystapien
+                Console.WriteLine($"Losowanie {n}: {string.Join(",", l)}");
+                n++;
+            }
+            //wyswietlanie liczby wystapien
+            for (int i = 1;i < 49; i++)
+            {
+                int wystapienia = 0;
+                for(int j = 0; j <input; j++)
+                {
+                    for(int k = 0; k < 6; k++)
+                    {
+                        if (losy[j][k] == i)
+                        {
+                            wystapienia++;
+                        }
+                    }
+                }
+                Console.WriteLine($"Wystapienia liczby {i}: {wystapienia}");
+            }
         }
 
     }
